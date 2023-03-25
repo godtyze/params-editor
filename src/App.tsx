@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css'
+import './App.css';
 
 
 const testParams: Param[] = [
@@ -59,7 +59,7 @@ interface State {
 }
 
 class ParamEditor extends React.Component<Props, State> {
-  state = { model: this.props.model }
+  state = {model: this.props.model};
 
   getModel(): Model {
     return this.state.model;
@@ -84,17 +84,20 @@ class ParamEditor extends React.Component<Props, State> {
       };
     });
 
-    console.log(this.getModel()) // В коносли можно увидеть актуальное состояние модели.
+    console.log(this.getModel()); // В коносли можно увидеть актуальное состояние модели.
   }
 
   render() {
     return (
-      <div className='param-editor'>
-        <div className='param-titles'>
+      <div className="param-editor">
+        <div className="param-titles">
           {this.props.params.map(param => <span key={param.id}>{param.name}</span>)}
         </div>
-        <div className='param-values'>
-          {this.state.model.paramValues.map(val => <input key={val.paramId} value={val.value} onChange={(e) => this.onChange(e, val.paramId)}/>)}
+        <div className="param-values">
+          {this.state.model.paramValues.map(val =>
+            <input key={val.paramId} value={val.value}
+                   onChange={(e) => this.onChange(e, val.paramId)}
+            />)}
         </div>
       </div>
     );
@@ -105,9 +108,9 @@ class ParamEditor extends React.Component<Props, State> {
 function App() {
   return (
     <div className="App">
-      <ParamEditor params={testParams} model={testModel} />
+      <ParamEditor params={testParams} model={testModel}/>
     </div>
-  )
+  );
 }
 
 export default App;
