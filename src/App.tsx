@@ -66,11 +66,11 @@ class ParamEditor extends React.Component<Props, State> {
   }
 
   onChange(e: React.ChangeEvent<HTMLInputElement>, id: number) {
-    this.setState((state) => {
+    this.setState((prevState) => {
       return {
         model: {
-          ...state.model,
-          paramValues: state.model.paramValues.map(val => {
+          ...prevState.model,
+          paramValues: prevState.model.paramValues.map(val => {
             if (id === val.paramId) {
               return {
                 ...val,
@@ -83,22 +83,24 @@ class ParamEditor extends React.Component<Props, State> {
         }
       };
     });
-
-    console.log(this.getModel()); // В коносли можно увидеть актуальное состояние модели.
   }
 
   render() {
     return (
-      <div className="param-editor">
-        <div className="param-titles">
-          {this.props.params.map(param => <span key={param.id}>{param.name}</span>)}
+      <div className='wrapper'>
+        <div className="param-editor">
+          <div className="param-titles">
+            {this.props.params.map(param => <span key={param.id}>{param.name}</span>)}
+          </div>
+          <div className="param-values">
+            {this.state.model.paramValues.map(val =>
+              <input key={val.paramId} value={val.value}
+                     onChange={(e) => this.onChange(e, val.paramId)}
+              />)}
+          </div>
         </div>
-        <div className="param-values">
-          {this.state.model.paramValues.map(val =>
-            <input key={val.paramId} value={val.value}
-                   onChange={(e) => this.onChange(e, val.paramId)}
-            />)}
-        </div>
+        <h3>Актуальное состояние модели:</h3>
+        <span>{JSON.stringify(this.getModel())}</span>
       </div>
     );
   }
