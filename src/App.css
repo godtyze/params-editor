@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  font-size: 20px;
+}
+
+.param-editor {
+  display: flex;
+  column-gap: 20px;
+}
+
+.param-values,
+.param-titles {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.param-values input {
+  font-size: 18px;
+}
